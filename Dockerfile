@@ -5,7 +5,6 @@ ARG group=squid
 ARG uid=8484
 ARG gid=8484
 
-RUN yum --showduplicates list squid
 RUN yum install -y --setopt=tsflags=nodocs  --setopt=override_install_langs=en_US.utf8 \
   squid-5.5 && \
 yum clean all
