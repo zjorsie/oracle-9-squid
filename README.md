@@ -13,6 +13,11 @@ How to run:
 - Fire up requests to proxy from localhost (`https_proxy="localhost:3128" curl https://<<domain>>`)
 - Watch the squid proxy internal ipcache: `docker exec -it oracle-9-squid-squid-1 squidclient mgr:ipcache`
 
+Apart from that you can see the logs, which are inside the container at `/var/log/squid`. Each startup they are rotated, to prevent large cache.logs.
+
+- Restart stack: `docker compose down && docker compose up -d`
+- Get a shell inside the container: `docker exec -it oracle-9-squid-squid-1 bash` 
+
 This should show entries from requests done above with an original TTL of 60 (TTL + lstref).
 
 Please do not use this container other than to showcase the error above!
