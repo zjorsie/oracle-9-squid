@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  squid:
+    build:
+      context: ./
+      dockerfile: ./build-v7/Dockerfile
+      args:
+        buildtype: local                            
+    network_mode: host
