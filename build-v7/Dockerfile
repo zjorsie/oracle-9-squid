@@ -46,8 +46,11 @@ WORKDIR /tmp/squid/
 RUN make install -j16
 
 WORKDIR /
-RUN rm -rf /tmp/squid
-RUN microdnf remove make g++ gcc libxml2-devel libcap-devel libtool-ltdl-devel
+
+RUN microdnf install epel-release
+RUN microdnf install ncdu
+RUN microdnf remove -y make g++ gcc libxml2-devel libcap-devel libtool-ltdl-devel epel-release && microdnf clean all
+
 # Inject entrypoint
 COPY ../entrypoint.sh /
 COPY ../squid.conf /etc/squid/squid.conf
@@ -56,6 +59,8 @@ RUN groupadd -g $gid $group; \
     touch /run/squid.pid; \
     mkdir -p /var/log/squid /var/spool/squid/; \
     chown -R $user:$group /var/log/squid /var/spool/squid/ /run/squid.pid
+
+RUN rm -rf /tmp/*
 
 USER $user:$group
 
