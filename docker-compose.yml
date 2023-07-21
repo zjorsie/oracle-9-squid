@@ -1,8 +1,0 @@
-version: "3.9"
-services:
-  squid:
-    build:
-      context: ./
-      args:
-        buildtype: local                            
-    network_mode: host
